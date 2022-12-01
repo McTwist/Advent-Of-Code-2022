@@ -1,17 +1,17 @@
 use std::fs;
 
-fn solve1(calories: &Vec<Vec<i32>>) -> i32 {
+fn solve1(calories: &[Vec<i32>]) -> i32 {
 	calories.iter().fold(std::i32::MIN, |a, b| {
-		a.max(b.iter().fold(0, |c, d| c + d))
+		a.max(b.iter().sum())
 	})
 }
 
-fn solve2(calories: &Vec<Vec<i32>>) -> i32 {
+fn solve2(calories: &[Vec<i32>]) -> i32 {
 	let mut c1: Vec<i32> = calories.iter().map(|a| {
-		a.iter().fold(0, |c, d| c + d)
+		a.iter().sum()
 	}).collect();
 	c1.sort_by(|a, b| b.partial_cmp(a).unwrap());
-	c1[0..3].iter().fold(0, |a, b| a + b)
+	c1[0..3].iter().sum()
 }
 
 fn main() {
