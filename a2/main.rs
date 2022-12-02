@@ -2,12 +2,7 @@ use std::fs;
 
 fn solve1(strategy: &[(i32, i32)]) -> i32 {
 	strategy.iter().fold(0, |a, (you, me)| {
-		a + me + 1 + match you - me {
-			1 | -2 => 0,
-			0 => 3,
-			-1 | 2 => 6,
-			_ => unreachable!(),
-		}
+		a + me + 1 + ((2 - (((you - me) + 4) % 3)) * 3)
 	})
 }
 

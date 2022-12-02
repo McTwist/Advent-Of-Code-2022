@@ -3,16 +3,10 @@ with open("input.txt", "r") as f:
 		lambda a: ord(a) - ord('A') if a in 'ABC' else ord(a) - ord('X'),
 		line.strip().split())) for line in f.readlines()]
 
-def calc_score(a, b):
-	match a - b:
-		case 1|-2: return 0
-		case 0: return 3
-		case -1|2: return 6
-
 def solve1(strategy):
 	score = 0
 	for you, me in strategy:
-		score += me + 1 + calc_score(you, me)
+		score += me + 1 + ((2 - (((you - me) + 4) % 3)) * 3)
 	return score
 
 def solve2(strategy):
