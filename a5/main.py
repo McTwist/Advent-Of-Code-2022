@@ -1,6 +1,5 @@
 import re
 
-rplace = re.compile(r"(\s{4}|\[(\w+)\])")
 rmove = re.compile(r"move (\d+) from (\d+) to (\d+)")
 with open("input.txt", "r") as f:
 	lines = f.readlines()
