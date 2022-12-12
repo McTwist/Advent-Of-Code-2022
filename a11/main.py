@@ -1,5 +1,4 @@
 import re
-from itertools import cycle
 import copy
 
 with open("input.txt", "r") as f:
