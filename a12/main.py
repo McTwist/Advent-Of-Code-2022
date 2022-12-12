@@ -21,17 +21,18 @@ with open("input.txt", "r") as f:
 def search(heightmap, starts, end):
 	endx, endy = end
 	queue = PriorityQueue()
-	visited = set()
+	visited = {}
 	for start in starts:
-		visited.add(start)
+		visited[start] = 0
 		queue.put((0, start))
 	def can_climb(c, x, y):
 		if not 0 <= y < len(heightmap) or not 0 <= x < len(heightmap[y]):
 			return False
 		return heightmap[y][x] - c <= 1
 	def climb(c, pos, prio):
-		if pos not in visited and can_climb(c, *pos):
-			visited.add(pos)
+		p = visited.get(pos, prio+1)
+		if prio < p and can_climb(c, *pos):
+			visited[pos] = prio
 			queue.put((prio+1, pos))
 
 	while not queue.empty():
